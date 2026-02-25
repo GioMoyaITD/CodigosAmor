@@ -1,0 +1,49 @@
+body {
+    margin: 0;
+    height: 100vh;
+    background-color: #1a1a2e; 
+    overflow: hidden; 
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-family: 'Nunito', sans-serif;
+}
+
+h1 {
+    font-weight: 300;
+    opacity: 0.7;
+    pointer-events: none; 
+    text-align: center;
+    padding: 0 20px;
+}
+
+.heart-particle {
+    position: absolute;
+    font-size: 28px;
+    pointer-events: none; 
+    animation: explode 1s ease-out forwards;
+}
+
+@keyframes explode {
+    0% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
+    100% { transform: translate(var(--tx), var(--ty)) scale(0) rotate(var(--rot)); opacity: 0; }
+}
+
+.back-btn {
+    position: absolute;
+    bottom: 30px;
+    color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.3s;
+    z-index: 100;
+    background: rgba(255,255,255,0.1);
+    padding: 10px 20px;
+    border-radius: 20px;
+}
+
+.back-btn:hover {
+    color: white;
+    background: rgba(255,255,255,0.2);
+}
