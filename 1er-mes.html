@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Para mi amada Constanza</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #ffeef2 0%, #ffd1dc 100%);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .contenedor {
+            position: relative;
+            z-index: 10;
+            width: 90%;
+            max-width: 400px;
+            padding: 30px 20px;
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(5px);
+            border-radius: 30px;
+            box-shadow: 0 15px 35px rgba(214, 51, 132, 0.2);
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            animation: aparecer 1.5s ease-out;
+        }
+
+        .corazon-central {
+            color: #ff4d6d;
+            font-size: 60px;
+            display: inline-block;
+            animation: latido 1.2s infinite;
+            margin-bottom: 15px;
+            filter: drop-shadow(0 0 10px rgba(255, 77, 109, 0.3));
+        }
+
+        h1 {
+            color: #d63384;
+            font-size: 1.8rem;
+            margin: 0 0 15px 0;
+            line-height: 1.2;
+        }
+
+        p {
+            color: #444;
+            font-size: 1.1rem;
+            line-height: 1.5;
+            margin: 0;
+        }
+
+        .firma {
+            display: block;
+            margin-top: 20px;
+            color: #d63384;
+            font-weight: bold;
+            font-size: 1.2rem;
+            font-style: italic;
+        }
+
+        /* Corazones flotantes optimizados */
+        .corazon-flotante {
+            position: absolute;
+            color: #ff758f;
+            top: -10%;
+            pointer-events: none;
+            z-index: 1;
+            will-change: transform;
+        }
+
+        @keyframes latido {
+            0% { transform: scale(1); }
+            15% { transform: scale(1.2); }
+            30% { transform: scale(1); }
+            45% { transform: scale(1.1); }
+            60% { transform: scale(1); }
+        }
+
+        @keyframes aparecer {
+            from { opacity: 0; transform: scale(0.8); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        @keyframes caer {
+            to {
+                transform: translateY(110vh) rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="contenedor">
+        <div class="corazon-central">❤️</div>
+        <h1>¡Feliz 1er Mes,<br>Amor!</h1>
+        <p>Gracias por estos primeros 28 días llenos de alegría.<br>
+        Eres lo más lindo que me ha pasado.</p>
+        <span class="firma">- Giovanni -</span>
+    </div>
+
+    <script>
+        function crearCorazon() {
+            const corazon = document.createElement('div');
+            corazon.classList.add('corazon-flotante');
+            corazon.innerHTML = '❤️';
+            
+            // Posición aleatoria
+            const startPos = Math.random() * 100;
+            corazon.style.left = startPos + "vw";
+            
+            // Tamaño aleatorio
+            const size = Math.random() * 15 + 10;
+            corazon.style.fontSize = size + "px";
+            
+            // Duración aleatoria
+            const duration = Math.random() * 3 + 3;
+            
+            // Animación usando transform para rendimiento en móvil
+            corazon.style.animation = `caer ${duration}s linear forwards`;
+            
+            document.body.appendChild(corazon);
+
+            // Limpiar el DOM
+            setTimeout(() => {
+                corazon.remove();
+            }, duration * 1000);
+        }
+
+        // Menos frecuencia para no agotar la batería del móvil
+        setInterval(crearCorazon, 400);
+
+        // Prevenir scroll accidental en móvil
+        document.addEventListener('touchmove', function(e) {
+            e.preventDefault();
+        }, { passive: false });
+    </script>
+</body>
+</html>

@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para ti ❤️</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Nunito:wght@400;700&display=swap');
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+            background-color: #0d1117; /* Fondo oscuro estilo editor de código */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Nunito', sans-serif;
+            overflow: hidden;
+        }
+
+        .card-container {
+            background-color: #f4f4f9;
+            width: 95%;
+            max-width: 450px;
+            height: 80vh;
+            max-height: 600px;
+            border-radius: 30px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* Pantalla inicial obligatoria para que los navegadores móviles permitan el audio */
+        #start-screen {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(13, 17, 23, 0.95);
+            color: #fff;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+            cursor: pointer;
+            border-radius: 30px;
+            transition: opacity 0.5s ease;
+        }
+        #start-screen p { font-size: 1.2rem; margin-top: 15px; }
+        .pulse-heart { font-size: 3rem; animation: pulse 1s infinite; }
+        @keyframes pulse { 0% { transform: scale(1); } 50% { transform: scale(1.2); } 100% { transform: scale(1); } }
+
+        /* Contenedor del personaje SVG */
+        #svg-character-container {
+            position: absolute;
+            left: 5%;
+            bottom: 25%;
+            width: 120px;
+            height: 120px;
+        }
+
+        /* Efecto de "Dibujo a mano" para el SVG */
+        .draw-path {
+            fill: none;
+            stroke: #333;
+            stroke-width: 3;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+            stroke-dasharray: 400;
+            stroke-dashoffset: 400;
+        }
+
+        .animate-draw {
+            animation: drawLine 2s ease-out forwards;
+        }
+
+        @keyframes drawLine {
+            to { stroke-dashoffset: 0; }
+        }
+
+        /* Elementos del rostro que aparecen de golpe después de dibujar */
+        .face-element {
+            opacity: 0;
+            fill: #333;
+            transition: opacity 0.5s ease;
+        }
+
+        /* Corazón "Biu" estilo CSS puro */
+        #biu-text {
+            position: absolute;
+            left: 28%;
+            bottom: 45%;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #d32f2f;
+            opacity: 0;
+            transform: scale(0) rotate(-15deg);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        /* Contenedor del corazón grande */
+        .big-heart-container {
+            position: absolute;
+            right: 5%;
+            top: 10%;
+            width: 280px;
+            height: 280px;
+        }
+
+        /* Corazones pequeños generados con CSS (Cero imágenes) */
+        .small-heart {
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background-color: #e91e63;
+            transform: rotate(-45deg) scale(0);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .small-heart::before,
+        .small-heart::after {
+            content: "";
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background-color: #e91e63;
+            border-radius: 50%;
+        }
+        .small-heart::before { top: -8px; left: 0; }
+        .small-heart::after { top: 0; left: 8px; }
+
+        .small-heart.active {
+            transform: rotate(-45deg) scale(1);
+            opacity: 1;
+        }
+
+        /* Texto Final */
+        #final-text {
+            position: absolute;
+            bottom: 10%;
+            width: 100%;
+            text-align: center;
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            color: #d32f2f;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 1.5s ease-out;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+        #final-text.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="card-container">
+        
+        <div id="start-screen">
+            <div class="pulse-heart">❤️</div>
+            <p>Toca para abrir</p>
+        </div>
+
+        <audio id="bg-music" src="https://assets.mixkit.co/music/preview/mixkit-romantic-piano-and-strings-orchestra-605.mp3" preload="auto"></audio>
+        
+        <div id="svg-character-container">
+            <svg viewBox="0 0 100 100" width="100%" height="100%">
+                <path class="draw-path" id="char-body" d="M 25 85 C 25 30, 75 30, 75 85 Q 60 75, 50 85 Q 40 75, 25 85 Z" />
+                <path class="draw-path" id="char-arm" d="M 70 65 L 95 45" />
+                <circle class="face-element" cx="42" cy="55" r="3" />
+                <circle class="face-element" cx="58" cy="55" r="3" />
+                <path class="face-element" d="M 45 62 Q 50 67 55 62" fill="none" stroke="#333" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+        </div>
+        
+        <div id="biu-text">❤️ biu~</div>
+
+        <div class="big-heart-container" id="heart-grid"></div>
+
+        <div id="final-text">Te amo</div>
+    </div>
+
+    <script>
+        const startScreen = document.getElementById('start-screen');
+        const music = document.getElementById('bg-music');
+        const heartGrid = document.getElementById('heart-grid');
+        const finalText = document.getElementById('final-text');
+        const charBody = document.getElementById('char-body');
+        const charArm = document.getElementById('char-arm');
+        const faceElements = document.querySelectorAll('.face-element');
+        const biuText = document.getElementById('biu-text');
+
+        // Matriz de dibujo del corazón (optimizada para la pantalla del celular)
+        const heartCoordinates = [
+            [2,0], [3,0], [6,0], [7,0],
+            [1,1], [2,1], [3,1], [4,1], [5,1], [6,1], [7,1], [8,1],
+            [0,2], [1,2], [2,2], [3,2], [4,2], [5,2], [6,2], [7,2], [8,2], [9,2],
+            [0,3], [1,3], [2,3], [3,3], [4,3], [5,3], [6,3], [7,3], [8,3], [9,3],
+            [0,4], [1,4], [2,4], [3,4], [4,4], [5,4], [6,4], [7,4], [8,4], [9,4],
+            [1,5], [2,5], [3,5], [4,5], [5,5], [6,5], [7,5], [8,5],
+            [2,6], [3,6], [4,6], [5,6], [6,6], [7,6],
+            [3,7], [4,7], [5,7], [6,7],
+            [4,8], [5,8],
+            [4.5,9] 
+        ];
+        
+        const gridSize = 24; 
+
+        startScreen.addEventListener('click', () => {
+            startScreen.style.opacity = '0';
+            setTimeout(() => { startScreen.style.display = 'none'; }, 500);
+            
+            music.volume = 0.6;
+            music.play().catch(e => console.log("Audio no pudo iniciar."));
+
+            startAnimationSequence();
+        });
+
+        function startAnimationSequence() {
+            // 1. Iniciar el efecto de dibujo del cuerpo y el brazo
+            charBody.classList.add('animate-draw');
+            charArm.classList.add('animate-draw');
+
+            // 2. Aparece la carita del personaje
+            setTimeout(() => {
+                faceElements.forEach(el => el.style.opacity = '1');
+            }, 2000);
+
+            // 3. Sale el "biu"
+            setTimeout(() => {
+                biuText.style.opacity = '1';
+                biuText.style.transform = 'scale(1) rotate(-5deg) translateY(-20px)';
+            }, 2500);
+
+            // 4. Se empieza a construir el corazón grande
+            setTimeout(() => {
+                drawBigHeart();
+            }, 3000);
+        }
+
+        function drawBigHeart() {
+            heartCoordinates.forEach((coord, index) => {
+                const heart = document.createElement('div');
+                heart.classList.add('small-heart');
+                
+                const offsetX = 15;
+                const offsetY = 20;
+                heart.style.left = (coord[0] * gridSize + offsetX) + 'px';
+                heart.style.top = (coord[1] * gridSize + offsetY) + 'px';
+                
+                heartGrid.appendChild(heart);
+
+                setTimeout(() => {
+                    heart.classList.add('active');
+                }, index * 40); 
+            });
+
+            // 5. Aparece el texto final
+            setTimeout(() => {
+                finalText.classList.add('show');
+            }, heartCoordinates.length * 40 + 800);
+        }
+    </script>
+</body>
+</html>
