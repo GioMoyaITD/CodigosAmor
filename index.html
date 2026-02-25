@@ -4,37 +4,66 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Para Mi Amor</title>
-    <link rel="stylesheet" href="style.css">
+    
     <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
-</head>
-<body>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        dancing: ['"Dancing Script"', 'cursive'],
+                        nunito: ['Nunito', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
 
-    <header>
-        <h1>Nuestra Colección de Momentos ❤️</h1>
-        <p>Un pequeño rincón hecho con mucho amor para ti.</p>
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .bg-animated-gradient {
+                background: linear-gradient(-45deg, #ff9a9e, #fecfef, #a1c4fd, #c2e9fb);
+                background-size: 400% 400%;
+                animation: gradientBG 15s ease infinite;
+            }
+        }
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+    </style>
+</head>
+<body class="bg-animated-gradient font-nunito min-h-screen flex flex-col items-center p-6 text-gray-800">
+
+    <header class="text-center mb-10 text-white drop-shadow-md mt-4">
+        <h1 class="font-dancing text-5xl sm:text-6xl mb-2">Nuestra Colección ❤️</h1>
+        <p class="text-lg font-semibold opacity-90">Un pequeño rincón hecho para ti.</p>
     </header>
 
-    <main class="gallery-container">
+    <main class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 w-full max-w-5xl">
         
-        <div class="card locked" style="--rotation: 2deg;">
-            <div class="card-image">
-                <span class="emoji-art">🔒</span>
+        <div class="bg-white/80 p-4 rounded-2xl shadow-lg rotate-[2deg] cursor-not-allowed grayscale-[50%] flex flex-col">
+            <div class="bg-gray-50 border border-gray-100 h-48 rounded-xl flex justify-center items-center mb-4">
+                <span class="text-7xl opacity-50">🔒</span>
             </div>
-            <div class="card-content">
-                <h2>Día 2</h2>
-                <p>Preparando la siguiente sorpresa...</p>
-                <span class="date">Próximamente</span>
+            <div class="flex flex-col">
+                <h2 class="text-xl text-gray-500 font-bold mb-1">Día 2</h2>
+                <p class="text-sm text-gray-500 mb-4">Preparando la siguiente sorpresa...</p>
+                <span class="text-xs font-bold text-gray-400 uppercase tracking-wider mt-auto">Próximamente</span>
             </div>
         </div>
 
-        <a href="dia1.html" class="card" style="--rotation: -3deg;">
-            <div class="card-image">
-                <span class="emoji-art">✨</span> 
+        <a href="dia1.html" style="--rotation: -3deg;" class="group bg-white p-4 rounded-2xl shadow-xl rotate-[var(--rotation)] transition-all duration-300 ease-out hover:rotate-0 hover:scale-105 hover:-translate-y-2 hover:shadow-2xl flex flex-col">
+            <div class="bg-pink-50 border border-pink-100 h-48 rounded-xl flex justify-center items-center mb-4 overflow-hidden">
+                <span class="text-7xl transition-transform duration-300 group-hover:scale-110">✨</span> 
             </div>
-            <div class="card-content">
-                <h2>Lluvia de Amor</h2>
-                <p>Haz clic para ver un poco de magia.</p>
-                <span class="date">Día 1</span>
+            <div class="flex flex-col">
+                <h2 class="text-xl text-pink-500 font-bold mb-1">Lluvia de Amor</h2>
+                <p class="text-sm text-gray-600 mb-4">Toca la pantalla para ver un poco de magia.</p>
+                <span class="text-xs font-bold text-gray-400 uppercase tracking-wider mt-auto">Día 1</span>
             </div>
         </a>
 
