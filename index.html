@@ -45,7 +45,21 @@
 
     <main class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 w-full max-w-5xl">
         
-        <a href="mes-01.html" class="bg-white/80 p-4 rounded-2xl shadow-lg rotate-[2deg] hover:rotate-0 transition-all duration-300 flex flex-col cursor-pointer hover:scale-105">
+        <div class="bg-white/90 p-4 rounded-2xl shadow-lg rotate-[2deg] cursor-not-allowed flex flex-col">
+            <div class="bg-rose-50 border border-rose-100 h-48 rounded-xl flex justify-center items-center mb-4">
+                <span class="text-7xl opacity-50">⏳</span>
+            </div>
+            <div class="flex flex-col flex-grow">
+                <h2 class="text-xl text-rose-400 font-bold mb-1">Siguiente Sorpresa</h2>
+                <p class="text-sm text-gray-500 mb-4">Preparando algo muy especial para ti...</p>
+                <div class="mt-auto flex justify-between items-center">
+                    <span class="text-xs font-bold text-gray-400 uppercase tracking-wider">Mes 02</span>
+                    <span class="text-xs font-bold text-white bg-rose-400 px-2 py-1 rounded-md uppercase tracking-wider shadow-sm">Próximamente</span>
+                </div>
+            </div>
+        </div>
+
+        <a href="mes-01.html" class="bg-white/90 p-4 rounded-2xl shadow-lg rotate-[-1deg] hover:rotate-0 transition-all duration-300 flex flex-col cursor-pointer hover:scale-105 hover:-translate-y-1">
             <div class="bg-pink-100 border border-pink-200 h-48 rounded-xl flex justify-center items-center mb-4">
                 <span class="text-7xl">🎂</span>
             </div>
@@ -56,9 +70,9 @@
             </div>
         </a>
 
-        <a href="semana-03.html" style="--rotation: -2deg;" class="group bg-white p-4 rounded-2xl shadow-xl rotate-[var(--rotation)] transition-all duration-300 ease-out hover:rotate-0 hover:scale-105 hover:-translate-y-2 hover:shadow-2xl flex flex-col">
+        <a href="semana-03.html" style="--rotation: 2deg;" class="group bg-white p-4 rounded-2xl shadow-xl rotate-[var(--rotation)] transition-all duration-300 ease-out hover:rotate-0 hover:scale-105 hover:-translate-y-2 hover:shadow-2xl flex flex-col">
             <div class="bg-gray-100 border border-gray-100 h-48 rounded-xl flex justify-center items-center mb-4 overflow-hidden relative">
-                <img src="img/portada-dia03.jpg" alt="Semana 03" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" onerror="this.src='https://images.unsplash.com/photo-1518199266791-5375a83164ba?q=80&w=400&auto=format&fit=crop';">
+                <img src="img/portada-semana03.jpg" alt="Semana 03" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" onerror="this.src='https://images.unsplash.com/photo-1558017487-06bf9f82613a?auto=format&fit=crop&w=400&q=80';">
             </div>
             <div class="flex flex-col flex-grow">
                 <h2 class="text-xl text-rose-500 font-bold mb-1">Cargando Amor</h2>
@@ -67,7 +81,7 @@
             </div>
         </a>
 
-        <a href="semana-02.html" style="--rotation: 3deg;" class="group bg-white p-4 rounded-2xl shadow-xl rotate-[var(--rotation)] transition-all duration-300 ease-out hover:rotate-0 hover:scale-105 hover:-translate-y-2 hover:shadow-2xl flex flex-col">
+        <a href="semana-02.html" style="--rotation: -2deg;" class="group bg-white p-4 rounded-2xl shadow-xl rotate-[var(--rotation)] transition-all duration-300 ease-out hover:rotate-0 hover:scale-105 hover:-translate-y-2 hover:shadow-2xl flex flex-col">
             <div class="bg-red-50 border border-red-100 h-48 rounded-xl flex justify-center items-center mb-4 overflow-hidden">
                 <span class="text-7xl transition-transform duration-300 group-hover:scale-110">🎟️</span> 
             </div>
@@ -78,7 +92,7 @@
             </div>
         </a>
 
-        <a href="semana-01.html" style="--rotation: -3deg;" class="group bg-white p-4 rounded-2xl shadow-xl rotate-[var(--rotation)] transition-all duration-300 ease-out hover:rotate-0 hover:scale-105 hover:-translate-y-2 hover:shadow-2xl flex flex-col">
+        <a href="semana-01.html" style="--rotation: 3deg;" class="group bg-white p-4 rounded-2xl shadow-xl rotate-[var(--rotation)] transition-all duration-300 ease-out hover:rotate-0 hover:scale-105 hover:-translate-y-2 hover:shadow-2xl flex flex-col">
             <div class="bg-pink-50 border border-pink-100 h-48 rounded-xl flex justify-center items-center mb-4 overflow-hidden">
                 <span class="text-7xl transition-transform duration-300 group-hover:scale-110">✨</span> 
             </div>
