@@ -12,28 +12,72 @@
             theme: { extend: { fontFamily: { nunito: ['Nunito', 'sans-serif'] } } }
         }
     </script>
+    <style>
+        /* --- Serpentinas Estandarizadas --- */
+        .serpentina {
+            position: absolute;
+            width: 5px;
+            height: 35px;
+            border-radius: 4px;
+            top: -50px;
+            pointer-events: none;
+            animation: caer-serpentina linear infinite;
+            z-index: 0;
+        }
+        @keyframes caer-serpentina {
+            0% { transform: translateY(-5vh) rotate(0deg) rotateY(0deg); opacity: 1; }
+            100% { transform: translateY(110vh) rotate(360deg) rotateY(360deg); opacity: 0.2; }
+        }
+        .s-1 { left: 15%; background: #ff4d6d; animation-duration: 5s; animation-delay: 0s; }
+        .s-2 { left: 35%; background: #ff758f; animation-duration: 7s; animation-delay: 2s; height: 25px; }
+        .s-3 { left: 65%; background: #ffccd5; animation-duration: 6s; animation-delay: 1s; height: 45px; }
+        .s-4 { left: 85%; background: #d63384; animation-duration: 8s; animation-delay: 3.5s; }
+        .s-5 { left: 50%; background: #ff99ac; animation-duration: 6.5s; animation-delay: 1.5s; height: 30px; }
+
+        /* Efecto de resplandor para el corazón al presionarlo */
+        .charging-glow {
+            filter: drop-shadow(0 0 25px rgba(255, 77, 109, 0.8));
+            transform: scale(1.15);
+        }
+    </style>
 </head>
-<body class="bg-rose-50 min-h-screen flex flex-col items-center justify-center font-nunito p-6 overflow-hidden touch-none selection:bg-transparent text-center">
+<body class="bg-gradient-to-br from-rose-50 to-pink-100 h-[100dvh] w-full flex flex-col items-center justify-center font-nunito overflow-hidden touch-none selection:bg-transparent relative">
 
-    <div id="game-screen" class="flex flex-col items-center w-full max-w-sm z-10 transition-opacity duration-500">
-        <h1 class="text-2xl font-bold text-rose-500 mb-2">Cargando Amor...</h1>
-        <p class="text-gray-500 text-sm mb-8">Mantén presionado el corazón hasta llegar al 100%</p>
+    <div class="absolute inset-0 pointer-events-none overflow-hidden z-0">
+        <div class="serpentina s-1"></div>
+        <div class="serpentina s-2"></div>
+        <div class="serpentina s-3"></div>
+        <div class="serpentina s-4"></div>
+        <div class="serpentina s-5"></div>
+    </div>
 
-        <div class="w-full bg-gray-200 rounded-full h-6 mb-12 overflow-hidden shadow-inner">
-            <div id="progress-bar" class="bg-gradient-to-r from-pink-400 to-rose-500 h-6 rounded-full transition-all duration-75 ease-linear w-0"></div>
+    <div id="game-screen" class="flex flex-col items-center justify-center w-full px-6 max-w-sm z-10 transition-opacity duration-500">
+        <h1 class="text-4xl font-black bg-gradient-to-r from-pink-400 to-rose-500 bg-clip-text text-transparent mb-2 text-center">Cargando Amor...</h1>
+        <p class="text-gray-500 text-sm font-semibold uppercase tracking-wider mb-8 text-center">Mantén presionado el corazón</p>
+
+        <div id="progress-text" class="text-3xl font-black text-rose-500 mb-2 drop-shadow-sm text-center">0%</div>
+
+        <div class="w-full bg-white border-4 border-rose-200 rounded-full h-8 mb-12 overflow-hidden shadow-inner p-1 relative">
+            <div id="progress-bar" class="bg-gradient-to-r from-pink-400 via-rose-400 to-rose-500 h-full rounded-full transition-all duration-75 ease-linear w-0 shadow-md"></div>
         </div>
 
-        <button id="heart-btn" class="text-8xl hover:scale-110 active:scale-95 transition-transform drop-shadow-xl cursor-pointer select-none">
+        <button id="heart-btn" class="text-8xl transition-all duration-200 cursor-pointer select-none drop-shadow-xl animate-pulse">
             ❤️
         </button>
     </div>
 
-    <div id="message-screen" class="hidden flex-col items-center z-10 absolute inset-0 bg-rose-50 px-6 justify-center opacity-0 transition-opacity duration-1000">
-        <span class="text-7xl mb-6 block animate-bounce">💖</span>
-        <h2 class="text-3xl font-black text-rose-600 mb-4 leading-tight">¡Carga Completada!</h2>
-        <p class="text-lg text-gray-700 font-medium">Cada día que pasa mi amor por ti crece un poquito más. Gracias por hacerme tan feliz.</p>
+    <div id="message-screen" class="hidden fixed inset-0 z-50 bg-gradient-to-br from-rose-50 to-pink-100 opacity-0 transition-opacity duration-1000">
         
-        <a href="index.html" class="mt-12 bg-rose-400 text-white px-8 py-3 rounded-full text-sm font-bold shadow-lg hover:bg-rose-500 transition-colors">
+        <div class="h-full w-full flex flex-col items-center justify-center px-6 pb-24">
+            <span class="text-7xl mb-4 block animate-bounce drop-shadow-lg text-center">💖</span>
+            <h2 class="text-4xl font-black text-rose-600 mb-6 leading-tight drop-shadow-sm text-center">¡Carga Completada!</h2>
+            
+            <div class="bg-white/90 backdrop-blur-sm p-6 rounded-2xl shadow-xl border border-white/50 w-full max-w-sm text-center">
+                <p class="text-lg text-gray-700 font-medium leading-relaxed">Cada día que pasa mi amor por ti crece un poquito más.<br><br>Gracias por hacerme tan feliz.</p>
+            </div>
+        </div>
+        
+        <a href="index.html" class="absolute bottom-10 left-1/2 transform -translate-x-1/2 whitespace-nowrap px-8 py-3 bg-gradient-to-r from-pink-400 to-rose-500 text-white font-bold rounded-full shadow-lg hover:scale-105 active:scale-95 transition-all duration-300">
             Volver a la colección
         </a>
     </div>

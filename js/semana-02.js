@@ -6,21 +6,46 @@ function initCanvas() {
     canvas.width = canvas.offsetWidth;
     canvas.height = canvas.offsetHeight;
     
-    // 1. Pintamos todo el canvas de un color gris plateado
-    ctx.fillStyle = '#cbd5e1'; 
+    // 1. Creamos un degradado hermoso en lugar del gris aburrido
+    const gradient = ctx.createLinearGradient(0, 0, canvas.width, canvas.height);
+    gradient.addColorStop(0, '#ff9a9e'); // Rosa suave
+    gradient.addColorStop(0.5, '#fecfef'); // Rosa intermedio
+    gradient.addColorStop(1, '#ffc3a0'); // Tono durazno
+
+    ctx.fillStyle = gradient; 
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     
-    // 2. Le agregamos un texto encima para invitarla a raspar
-    ctx.font = 'bold 22px Nunito';
-    ctx.fillStyle = '#64748b'; 
+    // 2. Agregamos un patrón de circulitos simulando destellos (brillos)
+    ctx.fillStyle = 'rgba(255, 255, 255, 0.4)';
+    for(let i = 0; i < 30; i++) {
+        ctx.beginPath();
+        ctx.arc(
+            Math.random() * canvas.width, 
+            Math.random() * canvas.height, 
+            Math.random() * 4 + 1, 
+            0, Math.PI * 2
+        );
+        ctx.fill();
+    }
+    
+    // 3. Texto más elegante para invitarla a raspar
+    ctx.font = 'bold 26px Nunito';
+    ctx.fillStyle = '#ffffff'; 
     ctx.textAlign = 'center';
     ctx.textBaseline = 'middle';
-    ctx.fillText('Raspa aquí 💖', canvas.width / 2, canvas.height / 2);
     
-    // 3. La magia: le decimos al pincel que en lugar de pintar, "borre"
+    // Sombra para que el texto resalte sobre el degradado
+    ctx.shadowColor = 'rgba(0, 0, 0, 0.2)';
+    ctx.shadowBlur = 10;
+    ctx.fillText('¡Raspa Aquí! 👆', canvas.width / 2, canvas.height / 2);
+    
+    // Quitamos la sombra para que no afecte el borrado
+    ctx.shadowBlur = 0; 
+    
+    // 4. La magia: le decimos al pincel que en lugar de pintar, "borre"
     ctx.globalCompositeOperation = 'destination-out';
     ctx.lineWidth = 45; // El grosor del dedo al borrar
-    ctx.lineCap = 'round'; // Para que los bordes del borrado sean suaves
+    ctx.lineCap = 'round'; 
     ctx.lineJoin = 'round';
 }
 

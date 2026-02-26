@@ -3,147 +3,179 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>1er Mes - Para mi amada Constanza</title>
-    <style>
-        * {
-            box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent;
-        }
-
-        body {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background: linear-gradient(135deg, #ffeef2 0%, #ffd1dc 100%);
-            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-            overflow: hidden;
-            text-align: center;
-        }
-
-        .contenedor {
-            position: relative;
-            z-index: 10;
-            width: 90%;
-            max-width: 400px;
-            padding: 30px 20px;
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(5px);
-            border-radius: 30px;
-            box-shadow: 0 15px 35px rgba(214, 51, 132, 0.2);
-            border: 2px solid rgba(255, 255, 255, 0.5);
-            animation: aparecer 1.5s ease-out;
-        }
-
-        .corazon-central {
-            color: #ff4d6d;
-            font-size: 60px;
-            display: inline-block;
-            animation: latido 1.2s infinite;
-            margin-bottom: 15px;
-            filter: drop-shadow(0 0 10px rgba(255, 77, 109, 0.3));
-        }
-
-        h1 {
-            color: #d63384;
-            font-size: 1.8rem;
-            margin: 0 0 15px 0;
-            line-height: 1.2;
-        }
-
-        p {
-            color: #444;
-            font-size: 1.1rem;
-            line-height: 1.5;
-            margin: 0;
-        }
-
-        .firma {
-            display: block;
-            margin-top: 20px;
-            color: #d63384;
-            font-weight: bold;
-            font-size: 1.2rem;
-            font-style: italic;
-        }
-
-        /* Corazones flotantes optimizados */
-        .corazon-flotante {
-            position: absolute;
-            color: #ff758f;
-            top: -10%;
-            pointer-events: none;
-            z-index: 1;
-            will-change: transform;
-        }
-
-        @keyframes latido {
-            0% { transform: scale(1); }
-            15% { transform: scale(1.2); }
-            30% { transform: scale(1); }
-            45% { transform: scale(1.1); }
-            60% { transform: scale(1); }
-        }
-
-        @keyframes aparecer {
-            from { opacity: 0; transform: scale(0.8); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        @keyframes caer {
-            to {
-                transform: translateY(110vh) rotate(360deg);
+    <title>Mes 1 - Nuestro Álbum ❤️</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: { 
+                extend: { 
+                    fontFamily: { 
+                        nunito: ['Nunito', 'sans-serif'],
+                        dancing: ['"Dancing Script"', 'cursive']
+                    } 
+                } 
             }
         }
+    </script>
+
+    <style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .animar-entrada { animation: fadeIn 1s ease-out forwards; }
     </style>
 </head>
-<body>
+<body class="bg-gradient-to-br from-pink-100 via-rose-50 to-pink-200 h-[100dvh] flex flex-col items-center justify-center font-nunito overflow-hidden selection:bg-transparent relative w-full">
 
-    <div class="contenedor">
-        <div class="corazon-central">❤️</div>
-        <h1>¡Feliz 1er Mes,<br>Amor!</h1>
-        <p>Gracias por estos primeros 28 días llenos de alegría.<br>
-        Eres lo más lindo que me ha pasado.</p>
-        <span class="firma">- Giovanni -</span>
+    <audio id="bg-music" loop>
+        <source src="music/cancion.mp3" type="audio/mpeg">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+
+    <div id="start-overlay" class="absolute inset-0 z-[100] bg-gradient-to-br from-pink-100 to-rose-100 flex flex-col items-center justify-center transition-opacity duration-1000">
+        <span class="text-7xl mb-6 animate-bounce drop-shadow-lg">🎁</span>
+        <h2 class="text-3xl font-black text-rose-500 mb-8 font-nunito text-center px-4 drop-shadow-sm">Tengo una sorpresa para ti...</h2>
+        <button id="start-btn" class="px-10 py-4 bg-gradient-to-r from-pink-400 to-rose-500 text-white font-bold text-lg rounded-full shadow-xl hover:scale-105 active:scale-95 transition-all duration-300 animate-pulse">
+            Toca para abrir ❤️
+        </button>
     </div>
 
+    <button id="music-btn" class="absolute top-6 right-6 z-50 bg-white/60 backdrop-blur-md text-2xl w-12 h-12 flex items-center justify-center rounded-full shadow-lg border border-white/50 hover:scale-110 active:scale-95 transition-all opacity-0 pointer-events-none">
+        🔇
+    </button>
+
+    <div class="absolute top-8 w-full text-center z-10 animar-entrada pointer-events-none">
+        <h1 class="text-4xl font-black text-rose-500 drop-shadow-sm mb-1">¡Feliz 1er Mes!</h1>
+        <p class="text-gray-500 text-sm font-semibold tracking-widest uppercase">Desliza para ver nuestros recuerdos ➡️</p>
+    </div>
+
+    <div class="w-full flex overflow-x-auto snap-x snap-mandatory gap-8 px-[15vw] py-10 no-scrollbar items-center z-10 mt-8">
+        
+        <div class="snap-center shrink-0 w-64 bg-white p-3 pb-6 rounded-sm shadow-[0_20px_50px_rgba(0,0,0,0.15)] transform -rotate-2 transition-transform duration-300 flex flex-col items-center">
+            <div class="w-full h-64 bg-gray-200 overflow-hidden mb-4">
+                <img src="img/imagen-1.webp" alt="Nuestro recuerdo" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1518199266791-5375a83164ba?w=400&q=80';">
+            </div>
+            <p class="font-dancing text-2xl text-center text-gray-800 px-2 leading-tight min-h-[4rem] flex items-center justify-center">Desde que llegaste, cada día a tu lado es mágico</p>
+        </div>
+
+        <div class="snap-center shrink-0 w-64 bg-white p-3 pb-6 rounded-sm shadow-[0_20px_50px_rgba(0,0,0,0.15)] transform rotate-3 transition-transform duration-300 flex flex-col items-center">
+            <div class="w-full h-64 bg-gray-200 overflow-hidden mb-4">
+                <img src="img/imagen-2.jpg" alt="Nuestro recuerdo" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=400&q=80';">
+            </div>
+            <p class="font-dancing text-2xl text-center text-gray-800 px-2 leading-tight min-h-[4rem] flex items-center justify-center">Perderme en tu mirada es mi pasatiempo favorito, mi amor</p>
+        </div>
+
+        <div class="snap-center shrink-0 w-64 bg-white p-3 pb-6 rounded-sm shadow-[0_20px_50px_rgba(0,0,0,0.15)] transform -rotate-1 transition-transform duration-300 flex flex-col items-center">
+            <div class="w-full h-64 bg-gray-200 overflow-hidden mb-4">
+                <img src="img/imagen-3.jpg" alt="Nuestro recuerdo" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1494774157365-9e04c6720e47?w=400&q=80';">
+            </div>
+            <p class="font-dancing text-2xl text-center text-gray-800 px-2 leading-tight min-h-[4rem] flex items-center justify-center">Contigo descubrí que la felicidad tiene tu hermoso nombre: Constanza</p>
+        </div>
+
+        <div class="snap-center shrink-0 w-64 bg-white p-3 pb-6 rounded-sm shadow-[0_20px_50px_rgba(0,0,0,0.15)] transform rotate-2 transition-transform duration-300 flex flex-col items-center">
+            <div class="w-full h-64 bg-gray-200 overflow-hidden mb-4">
+                <img src="img/imagen-4.jpg" alt="Nuestro recuerdo" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1518199266791-5375a83164ba?w=400&q=80';">
+            </div>
+            <p class="font-dancing text-2xl text-center text-gray-800 px-2 leading-tight min-h-[4rem] flex items-center justify-center">Caminar siempre de tu mano es la mejor aventura diaria</p>
+        </div>
+
+        <div class="snap-center shrink-0 w-64 bg-white p-3 pb-6 rounded-sm shadow-[0_20px_50px_rgba(0,0,0,0.15)] transform -rotate-3 transition-transform duration-300 flex flex-col items-center">
+            <div class="w-full h-64 bg-gray-200 overflow-hidden mb-4">
+                <img src="img/imagen-5.jpg" alt="Nuestro recuerdo" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=400&q=80';">
+            </div>
+            <p class="font-dancing text-2xl text-center text-gray-800 px-2 leading-tight min-h-[4rem] flex items-center justify-center">En tus abrazos encontré el refugio perfecto para mi corazón</p>
+        </div>
+
+        <div class="snap-center shrink-0 w-64 bg-white p-3 pb-6 rounded-sm shadow-[0_20px_50px_rgba(0,0,0,0.15)] transform rotate-1 transition-transform duration-300 flex flex-col items-center">
+            <div class="w-full h-64 bg-gray-200 overflow-hidden mb-4">
+                <img src="img/imagen-6.jpg" alt="Nuestro recuerdo" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1494774157365-9e04c6720e47?w=400&q=80';">
+            </div>
+            <p class="font-dancing text-2xl text-center text-gray-800 px-2 leading-tight min-h-[4rem] flex items-center justify-center">Quiero seguir creando miles de recuerdos hermosos junto a ti</p>
+        </div>
+
+        <div class="snap-center shrink-0 w-64 bg-white p-3 pb-6 rounded-sm shadow-[0_20px_50px_rgba(0,0,0,0.15)] transform -rotate-2 transition-transform duration-300 flex flex-col items-center">
+            <div class="w-full h-64 bg-gray-200 overflow-hidden mb-4">
+                <img src="img/imagen-7.webp" alt="Nuestro recuerdo" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1518199266791-5375a83164ba?w=400&q=80';">
+            </div>
+            <p class="font-dancing text-2xl text-center text-gray-800 px-2 leading-tight min-h-[4rem] flex items-center justify-center">Ver tu sonrisa ilumina mi mundo entero en un segundo</p>
+        </div>
+
+        <div class="snap-center shrink-0 w-64 bg-white p-3 pb-6 rounded-sm shadow-[0_20px_50px_rgba(0,0,0,0.15)] transform rotate-3 transition-transform duration-300 flex flex-col items-center">
+            <div class="w-full h-64 bg-gray-200 overflow-hidden mb-4">
+                <img src="img/imagen-8.jpg" alt="Nuestro recuerdo" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1522673607200-164d1b6ce486?w=400&q=80';">
+            </div>
+            <p class="font-dancing text-2xl text-center text-gray-800 px-2 leading-tight min-h-[4rem] flex items-center justify-center">Eres la coincidencia más hermosa que me regaló la vida</p>
+        </div>
+
+        <div class="snap-center shrink-0 w-64 bg-white p-3 pb-6 rounded-sm shadow-[0_20px_50px_rgba(0,0,0,0.15)] transform -rotate-1 transition-transform duration-300 flex flex-col items-center">
+            <div class="w-full h-64 bg-gray-200 overflow-hidden mb-4">
+                <img src="img/imagen-9.jpg" alt="Nuestro recuerdo" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1494774157365-9e04c6720e47?w=400&q=80';">
+            </div>
+            <p class="font-dancing text-2xl text-center text-gray-800 px-2 leading-tight min-h-[4rem] flex items-center justify-center">Llevamos un mes y ya siento que te amo muchísimo</p>
+        </div>
+
+        <div class="snap-center shrink-0 w-64 bg-white p-3 pb-6 rounded-sm shadow-[0_20px_50px_rgba(0,0,0,0.15)] transform rotate-2 transition-transform duration-300 flex flex-col items-center">
+            <div class="w-full h-64 bg-gray-200 overflow-hidden mb-4">
+                <img src="img/imagen-10.jpg" alt="Nuestro recuerdo" class="w-full h-full object-cover" onerror="this.src='https://images.unsplash.com/photo-1518199266791-5375a83164ba?w=400&q=80';">
+            </div>
+            <p class="font-dancing text-2xl text-center text-rose-600 font-bold px-2 leading-tight min-h-[4rem] flex items-center justify-center">Te amo con toda mi alma, Constanza, eres mi todo</p>
+        </div>
+
+    </div>
+
+    <a href="index.html" class="absolute bottom-10 left-1/2 transform -translate-x-1/2 whitespace-nowrap px-8 py-3 bg-gradient-to-r from-pink-400 to-rose-500 text-white font-bold rounded-full shadow-lg hover:scale-105 active:scale-95 transition-all duration-300 z-20">
+        Volver a la colección
+    </a>
+
     <script>
-        function crearCorazon() {
-            const corazon = document.createElement('div');
-            corazon.classList.add('corazon-flotante');
-            corazon.innerHTML = '❤️';
-            
-            // Posición aleatoria
-            const startPos = Math.random() * 100;
-            corazon.style.left = startPos + "vw";
-            
-            // Tamaño aleatorio
-            const size = Math.random() * 15 + 10;
-            corazon.style.fontSize = size + "px";
-            
-            // Duración aleatoria
-            const duration = Math.random() * 3 + 3;
-            
-            // Animación usando transform para rendimiento en móvil
-            corazon.style.animation = `caer ${duration}s linear forwards`;
-            
-            document.body.appendChild(corazon);
+        const music = document.getElementById('bg-music');
+        const musicBtn = document.getElementById('music-btn');
+        const startOverlay = document.getElementById('start-overlay');
+        const startBtn = document.getElementById('start-btn');
+        let isPlaying = false;
 
-            // Limpiar el DOM
+        // Bajarle un poco el volumen
+        music.volume = 0.5;
+
+        // Cuando Constanza presione el botón "Toca para abrir"
+        startBtn.addEventListener('click', () => {
+            
+            // 1. Adelantamos la canción al segundo 20
+            music.currentTime = 20;
+
+            // 2. Le damos play (ahora sí funcionará porque ella hizo clic)
+            music.play().then(() => {
+                isPlaying = true;
+                musicBtn.innerText = '🔊';
+            }).catch(e => console.log("Error de audio:", e));
+
+            // 3. Desvanecemos la pantalla inicial y mostramos el botón flotante
+            startOverlay.classList.add('opacity-0');
+            musicBtn.classList.remove('opacity-0', 'pointer-events-none');
+            
+            // 4. Quitamos el telón del medio para que pueda deslizar las fotos
             setTimeout(() => {
-                corazon.remove();
-            }, duration * 1000);
-        }
+                startOverlay.classList.add('hidden');
+            }, 1000);
+        });
 
-        // Menos frecuencia para no agotar la batería del móvil
-        setInterval(crearCorazon, 400);
-
-        // Prevenir scroll accidental en móvil
-        document.addEventListener('touchmove', function(e) {
-            e.preventDefault();
-        }, { passive: false });
+        // Lógica del botón flotante para pausar/reproducir
+        musicBtn.addEventListener('click', () => {
+            if (isPlaying) {
+                music.pause();
+                musicBtn.innerText = '🔇';
+            } else {
+                music.play();
+                musicBtn.innerText = '🔊';
+            }
+            isPlaying = !isPlaying;
+        });
     </script>
 </body>
 </html>

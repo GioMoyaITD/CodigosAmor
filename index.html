@@ -34,6 +34,25 @@
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
+        
+        /* --- NUEVAS ANIMACIONES PARA LOS ICONOS --- */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+        }
+        @keyframes twinkle {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(0.85); }
+        }
+        @keyframes hourglass {
+            0%, 40% { transform: rotate(0deg); }
+            50%, 90% { transform: rotate(180deg); }
+            100% { transform: rotate(360deg); }
+        }
     </style>
 </head>
 <body class="bg-animated-gradient font-nunito min-h-screen flex flex-col items-center p-6 text-gray-800">
@@ -47,7 +66,7 @@
         
         <div class="bg-white/90 p-4 rounded-2xl shadow-lg rotate-[2deg] cursor-not-allowed flex flex-col">
             <div class="bg-rose-50 border border-rose-100 h-48 rounded-xl flex justify-center items-center mb-4">
-                <span class="text-7xl opacity-50">⏳</span>
+                <span class="text-7xl opacity-50 animate-[hourglass_4s_infinite_ease-in-out]">⏳</span>
             </div>
             <div class="flex flex-col flex-grow">
                 <h2 class="text-xl text-rose-400 font-bold mb-1">Siguiente Sorpresa</h2>
@@ -59,9 +78,9 @@
             </div>
         </div>
 
-        <a href="mes-01.html" class="bg-white/90 p-4 rounded-2xl shadow-lg rotate-[-1deg] hover:rotate-0 transition-all duration-300 flex flex-col cursor-pointer hover:scale-105 hover:-translate-y-1">
+        <a href="mes-01.html" class="bg-white/90 p-4 rounded-2xl shadow-lg rotate-[-1deg] hover:rotate-0 transition-all duration-300 flex flex-col cursor-pointer hover:scale-105 hover:-translate-y-1 group">
             <div class="bg-pink-100 border border-pink-200 h-48 rounded-xl flex justify-center items-center mb-4">
-                <span class="text-7xl">🎂</span>
+                <span class="text-7xl animate-[float_3s_ease-in-out_infinite] group-hover:scale-110 transition-transform duration-300">🎂</span>
             </div>
             <div class="flex flex-col flex-grow">
                 <h2 class="text-xl text-pink-600 font-bold mb-1">¡Feliz 1er Mes!</h2>
@@ -71,8 +90,14 @@
         </a>
 
         <a href="semana-03.html" style="--rotation: 2deg;" class="group bg-white p-4 rounded-2xl shadow-xl rotate-[var(--rotation)] transition-all duration-300 ease-out hover:rotate-0 hover:scale-105 hover:-translate-y-2 hover:shadow-2xl flex flex-col">
-            <div class="bg-gray-100 border border-gray-100 h-48 rounded-xl flex justify-center items-center mb-4 overflow-hidden relative">
-                <img src="img/portada-semana03.jpg" alt="Semana 03" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" onerror="this.src='https://images.unsplash.com/photo-1558017487-06bf9f82613a?auto=format&fit=crop&w=400&q=80';">
+            <div class="bg-rose-50 border border-rose-100 h-48 rounded-xl flex flex-col justify-center items-center mb-4 overflow-hidden relative">
+                <div class="relative w-28 h-12 border-4 border-rose-300 rounded-lg p-1 flex items-center shadow-inner group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute -right-2.5 top-1/2 transform -translate-y-1/2 w-1.5 h-4 bg-rose-300 rounded-r-sm"></div>
+                    <div class="bg-gradient-to-r from-pink-400 to-rose-500 h-full rounded-sm w-[80%] animate-pulse flex items-center justify-center shadow-md">
+                        <span class="text-xs drop-shadow-md">❤️</span>
+                    </div>
+                </div>
+                <span class="mt-4 text-rose-500 font-bold text-xs tracking-widest animate-pulse">CARGANDO...</span>
             </div>
             <div class="flex flex-col flex-grow">
                 <h2 class="text-xl text-rose-500 font-bold mb-1">Cargando Amor</h2>
@@ -83,7 +108,7 @@
 
         <a href="semana-02.html" style="--rotation: -2deg;" class="group bg-white p-4 rounded-2xl shadow-xl rotate-[var(--rotation)] transition-all duration-300 ease-out hover:rotate-0 hover:scale-105 hover:-translate-y-2 hover:shadow-2xl flex flex-col">
             <div class="bg-red-50 border border-red-100 h-48 rounded-xl flex justify-center items-center mb-4 overflow-hidden">
-                <span class="text-7xl transition-transform duration-300 group-hover:scale-110">🎟️</span> 
+                <span class="text-7xl animate-[wiggle_2s_ease-in-out_infinite] group-hover:scale-110 transition-transform duration-300">🎟️</span> 
             </div>
             <div class="flex flex-col flex-grow">
                 <h2 class="text-xl text-red-500 font-bold mb-1">Raspa y Gana</h2>
@@ -94,7 +119,7 @@
 
         <a href="semana-01.html" style="--rotation: 3deg;" class="group bg-white p-4 rounded-2xl shadow-xl rotate-[var(--rotation)] transition-all duration-300 ease-out hover:rotate-0 hover:scale-105 hover:-translate-y-2 hover:shadow-2xl flex flex-col">
             <div class="bg-pink-50 border border-pink-100 h-48 rounded-xl flex justify-center items-center mb-4 overflow-hidden">
-                <span class="text-7xl transition-transform duration-300 group-hover:scale-110">✨</span> 
+                <span class="text-7xl animate-[twinkle_2s_ease-in-out_infinite] group-hover:scale-110 transition-transform duration-300">✨</span> 
             </div>
             <div class="flex flex-col flex-grow">
                 <h2 class="text-xl text-pink-500 font-bold mb-1">Lluvia de Amor</h2>

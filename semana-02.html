@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Semana 2 - Sorpresa ❤️</title>
     
-    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
     
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -13,25 +13,65 @@
             theme: { extend: { fontFamily: { nunito: ['Nunito', 'sans-serif'] } } }
         }
     </script>
+
+    <style>
+        /* --- Serpentinas --- */
+        .serpentina {
+            position: absolute;
+            width: 5px;
+            height: 35px;
+            border-radius: 4px;
+            top: -50px;
+            pointer-events: none;
+            animation: caer-serpentina linear infinite;
+            z-index: 0;
+        }
+        @keyframes caer-serpentina {
+            0% { transform: translateY(-5vh) rotate(0deg) rotateY(0deg); opacity: 1; }
+            100% { transform: translateY(110vh) rotate(360deg) rotateY(360deg); opacity: 0.2; }
+        }
+        .s-1 { left: 15%; background: #ff4d6d; animation-duration: 5s; animation-delay: 0s; }
+        .s-2 { left: 35%; background: #ff758f; animation-duration: 7s; animation-delay: 2s; height: 25px; }
+        .s-3 { left: 65%; background: #ffccd5; animation-duration: 6s; animation-delay: 1s; height: 45px; }
+        .s-4 { left: 85%; background: #d63384; animation-duration: 8s; animation-delay: 3.5s; }
+        .s-5 { left: 50%; background: #ff99ac; animation-duration: 6.5s; animation-delay: 1.5s; height: 30px; }
+
+        /* --- Animación de flotar para la tarjeta --- */
+        @keyframes flotar-suave {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        .animar-flote {
+            animation: flotar-suave 4s ease-in-out infinite;
+        }
+    </style>
 </head>
-<body class="bg-pink-50 min-h-screen flex flex-col items-center justify-center font-nunito p-4 overflow-hidden touch-none selection:bg-transparent">
+<body class="bg-gradient-to-br from-pink-50 to-pink-100 min-h-[100dvh] flex flex-col items-center justify-center font-nunito p-4 overflow-hidden touch-none selection:bg-transparent relative">
+
+    <div class="absolute inset-0 pointer-events-none overflow-hidden z-0">
+        <div class="serpentina s-1"></div>
+        <div class="serpentina s-2"></div>
+        <div class="serpentina s-3"></div>
+        <div class="serpentina s-4"></div>
+        <div class="serpentina s-5"></div>
+    </div>
 
     <div class="text-center mb-8 z-10">
-        <h1 class="text-3xl font-bold text-pink-500 mb-2">Raspa la tarjeta ✨</h1>
-        <p class="text-gray-500 text-sm">Usa tu dedo para descubrir el mensaje oculto</p>
+        <h1 class="text-4xl font-black bg-gradient-to-r from-pink-400 to-rose-500 bg-clip-text text-transparent mb-2 drop-shadow-sm">Raspa y Gana ✨</h1>
+        <p class="text-gray-500 text-sm font-semibold tracking-wide uppercase">Descubre tu premio oculto</p>
     </div>
 
-    <div class="relative w-72 h-72 sm:w-80 sm:h-80 rounded-3xl shadow-2xl overflow-hidden bg-white border-4 border-white">
+    <div class="relative w-72 h-72 sm:w-80 sm:h-80 rounded-3xl shadow-2xl overflow-hidden bg-white border-4 border-white animar-flote z-10">
         
-        <div class="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-pink-100 to-red-100 p-6 text-center">
-            <span class="text-6xl mb-4">🥰</span>
-            <h2 class="text-2xl font-bold text-pink-600 leading-tight">Eres la coincidencia más linda de mi vida.</h2>
+        <div class="absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-br from-rose-100 via-pink-50 to-pink-100 p-6 text-center">
+            <span class="text-6xl mb-4 animate-bounce drop-shadow-md">🥰</span>
+            <h2 class="text-2xl font-bold text-pink-600 leading-tight drop-shadow-sm">Eres la coincidencia más linda de mi vida.</h2>
         </div>
 
-        <canvas id="scratch-canvas" class="absolute inset-0 w-full h-full cursor-pointer z-10"></canvas>
+        <canvas id="scratch-canvas" class="absolute inset-0 w-full h-full cursor-pointer z-20"></canvas>
     </div>
 
-    <a href="index.html" class="mt-12 bg-white shadow-md hover:shadow-lg text-pink-400 px-6 py-3 rounded-full text-sm font-bold transition-all z-10">
+    <a href="index.html" class="mt-12 px-8 py-3 bg-gradient-to-r from-pink-400 to-rose-500 text-white font-bold rounded-full shadow-lg hover:scale-105 active:scale-95 transition-all duration-300 z-10">
         Volver a la colección
     </a>
 
