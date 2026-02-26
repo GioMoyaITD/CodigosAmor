@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Semana 3 - Para Mi Amor ❤️</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: { extend: { fontFamily: { nunito: ['Nunito', 'sans-serif'] } } }
+        }
+    </script>
+</head>
+<body class="bg-rose-50 min-h-screen flex flex-col items-center justify-center font-nunito p-6 overflow-hidden touch-none selection:bg-transparent text-center">
+
+    <div id="game-screen" class="flex flex-col items-center w-full max-w-sm z-10 transition-opacity duration-500">
+        <h1 class="text-2xl font-bold text-rose-500 mb-2">Cargando Amor...</h1>
+        <p class="text-gray-500 text-sm mb-8">Mantén presionado el corazón hasta llegar al 100%</p>
+
+        <div class="w-full bg-gray-200 rounded-full h-6 mb-12 overflow-hidden shadow-inner">
+            <div id="progress-bar" class="bg-gradient-to-r from-pink-400 to-rose-500 h-6 rounded-full transition-all duration-75 ease-linear w-0"></div>
+        </div>
+
+        <button id="heart-btn" class="text-8xl hover:scale-110 active:scale-95 transition-transform drop-shadow-xl cursor-pointer select-none">
+            ❤️
+        </button>
+    </div>
+
+    <div id="message-screen" class="hidden flex-col items-center z-10 absolute inset-0 bg-rose-50 px-6 justify-center opacity-0 transition-opacity duration-1000">
+        <span class="text-7xl mb-6 block animate-bounce">💖</span>
+        <h2 class="text-3xl font-black text-rose-600 mb-4 leading-tight">¡Carga Completada!</h2>
+        <p class="text-lg text-gray-700 font-medium">Cada día que pasa mi amor por ti crece un poquito más. Gracias por hacerme tan feliz.</p>
+        
+        <a href="index.html" class="mt-12 bg-rose-400 text-white px-8 py-3 rounded-full text-sm font-bold shadow-lg hover:bg-rose-500 transition-colors">
+            Volver a la colección
+        </a>
+    </div>
+
+    <script src="js/Semana-03.js"></script>
+</body>
+</html>
