@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Semana 1 - Para ti ❤️</title>
+    
+    <link rel="icon" href="img/favicon.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;700;900&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: { nunito: ['Nunito', 'sans-serif'] },
+                    colors: { 'love-dark': '#1a1a2e' }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        .heart-particle {
+            position: absolute;
+            font-size: 24px; 
+            pointer-events: none; 
+            animation: explode 1s ease-out forwards;
+        }
+        @keyframes explode {
+            0% { transform: translate(0, 0) scale(1) rotate(0deg); opacity: 1; }
+            100% { transform: translate(var(--tx), var(--ty)) scale(0) rotate(var(--rot)); opacity: 0; }
+        }
+
+        /* --- Animación sutil de Serpentinas --- */
+        .serpentina {
+            position: absolute;
+            width: 5px;
+            height: 35px;
+            border-radius: 4px;
+            top: -50px;
+            pointer-events: none;
+            animation: caer-serpentina linear infinite;
+            z-index: 0;
+        }
+        @keyframes caer-serpentina {
+            0% { transform: translateY(-5vh) rotate(0deg) rotateY(0deg); opacity: 1; }
+            100% { transform: translateY(110vh) rotate(360deg) rotateY(360deg); opacity: 0.2; }
+        }
+        
+        /* Variaciones para que no caigan todas al mismo tiempo */
+        .s-1 { left: 15%; background: #ff4d6d; animation-duration: 5s; animation-delay: 0s; }
+        .s-2 { left: 35%; background: #ff758f; animation-duration: 7s; animation-delay: 2s; height: 25px; }
+        .s-3 { left: 65%; background: #ffccd5; animation-duration: 6s; animation-delay: 1s; height: 45px; }
+        .s-4 { left: 85%; background: #d63384; animation-duration: 8s; animation-delay: 3.5s; }
+        .s-5 { left: 50%; background: #ff99ac; animation-duration: 6.5s; animation-delay: 1.5s; height: 30px; }
+    </style>
+</head>
+<body class="bg-love-dark text-white h-[100dvh] overflow-hidden flex flex-col justify-center items-center font-nunito relative selection:bg-transparent">
+
+    <div class="absolute inset-0 pointer-events-none overflow-hidden">
+        <div class="serpentina s-1"></div>
+        <div class="serpentina s-2"></div>
+        <div class="serpentina s-3"></div>
+        <div class="serpentina s-4"></div>
+        <div class="serpentina s-5"></div>
+    </div>
+
+    <div class="flex flex-col items-center pointer-events-none px-6 text-center z-10 w-full mb-12">
+        
+        <h5 class="text-xs opacity-50 tracking-widest uppercase mb-12 leading-relaxed">
+            Toca la pantalla donde quieras<br>y las veces que quieras ✨
+        </h5>
+        
+        <div class="flex flex-col items-center gap-4">
+            <h1 class="text-5xl font-black bg-gradient-to-r from-pink-400 via-rose-400 to-pink-500 bg-clip-text text-transparent drop-shadow-lg">
+                Te Amo Mucho
+            </h1>
+            <span class="text-7xl animate-pulse drop-shadow-[0_0_15px_rgba(255,77,109,0.5)]">❤️</span>
+        </div>
+        
+    </div>
+
+    <a href="index.html" class="back-btn absolute bottom-10 px-8 py-3 bg-gradient-to-r from-pink-400 to-rose-500 text-white font-bold rounded-full shadow-lg hover:scale-105 active:scale-95 transition-all duration-300 z-50">
+        Volver a la colección
+    </a>
+
+    <script src="js/semana-01.js"></script>
+</body>
+</html>

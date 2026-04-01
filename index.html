@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Para Mi Amor</title>
+    
+    <link rel="icon" href="img/favicon.png" type="image/png">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        dancing: ['"Dancing Script"', 'cursive'],
+                        nunito: ['Nunito', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style type="text/tailwindcss">
+        @layer utilities {
+            .bg-animated-gradient {
+                background: linear-gradient(-45deg, #ff9a9e, #fecfef, #a1c4fd, #c2e9fb);
+                background-size: 400% 400%;
+                animation: gradientBG 15s ease infinite;
+            }
+        }
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        /* --- NUEVAS ANIMACIONES PARA LOS ICONOS --- */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        @keyframes wiggle {
+            0%, 100% { transform: rotate(-5deg); }
+            50% { transform: rotate(5deg); }
+        }
+        @keyframes twinkle {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(0.85); }
+        }
+        @keyframes hourglass {
+            0%, 40% { transform: rotate(0deg); }
+            50%, 90% { transform: rotate(180deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-animated-gradient font-nunito min-h-screen flex flex-col items-center p-6 text-gray-800">
+
+    <header class="text-center mb-10 text-white drop-shadow-md mt-4">
+        <h1 class="font-dancing text-5xl sm:text-6xl mb-2">Nuestra Colección ❤️</h1>
+        <p class="text-lg font-semibold opacity-90">Un pequeño rincón hecho para ti.</p>
+    </header>
+
+    <main class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 w-full max-w-5xl">
+        
+        <div class="bg-white/90 p-4 rounded-2xl shadow-lg rotate-[2deg] cursor-not-allowed flex flex-col">
+            <div class="bg-rose-50 border border-rose-100 h-48 rounded-xl flex justify-center items-center mb-4">
+                <span class="text-7xl opacity-50 animate-[hourglass_4s_infinite_ease-in-out]">⏳</span>
+            </div>
+            <div class="flex flex-col flex-grow">
+                <h2 class="text-xl text-rose-400 font-bold mb-1">Siguiente Sorpresa</h2>
+                <p class="text-sm text-gray-500 mb-4">Preparando algo muy especial para ti...</p>
+                <div class="mt-auto flex justify-between items-center">
+                    <span class="text-xs font-bold text-gray-400 uppercase tracking-wider">Mes 03</span>
+                    <span class="text-xs font-bold text-white bg-rose-400 px-2 py-1 rounded-md uppercase tracking-wider shadow-sm">Próximamente</span>
+                </div>
+            </div>
+        </div>
+
+        <a href="mes-02.html" style="--rotation: -1deg;" class="group bg-white p-4 rounded-2xl shadow-xl rotate-[var(--rotation)] transition-all duration-300 ease-out hover:rotate-0 hover:scale-105 hover:-translate-y-2 hover:shadow-2xl flex flex-col">
+            <div class="bg-purple-50 border border-purple-100 h-48 rounded-xl flex justify-center items-center mb-4 overflow-hidden relative">
+                <span class="text-7xl animate-[bounce_3s_ease-in-out_infinite] group-hover:scale-110 transition-transform duration-300 drop-shadow-md">🎯</span>
+            </div>
+            <div class="flex flex-col flex-grow">
+                <h2 class="text-xl text-purple-500 font-bold mb-1">Nuestro Quiz</h2>
+                <p class="text-sm text-gray-600 mb-4">¿Cuánto me conoces realmente? ¡A jugar!</p>
+                <div class="mt-auto flex justify-between items-center">
+                    <span class="text-xs font-bold text-purple-400 uppercase tracking-wider">Mes 02</span>
+                </div>
+            </div>
+        </a>
+
+        <a href="mes-01.html" class="bg-white/90 p-4 rounded-2xl shadow-lg rotate-[2deg] hover:rotate-0 transition-all duration-300 flex flex-col cursor-pointer hover:scale-105 hover:-translate-y-1 group">
+            <div class="bg-pink-100 border border-pink-200 h-48 rounded-xl flex justify-center items-center mb-4">
+                <span class="text-7xl animate-[float_3s_ease-in-out_infinite] group-hover:scale-110 transition-transform duration-300">🎂</span>
+            </div>
+            <div class="flex flex-col flex-grow">
+                <h2 class="text-xl text-pink-600 font-bold mb-1">¡Feliz 1er Mes!</h2>
+                <p class="text-sm text-gray-500 mb-4">Nuestro primer mes juntos.</p>
+                <span class="text-xs font-bold text-pink-400 uppercase tracking-wider mt-auto">Mes 01</span>
+            </div>
+        </a>
+
+        <a href="semana-03.html" style="--rotation: -2deg;" class="group bg-white p-4 rounded-2xl shadow-xl rotate-[var(--rotation)] transition-all duration-300 ease-out hover:rotate-0 hover:scale-105 hover:-translate-y-2 hover:shadow-2xl flex flex-col">
+            <div class="bg-rose-50 border border-rose-100 h-48 rounded-xl flex flex-col justify-center items-center mb-4 overflow-hidden relative">
+                <div class="relative w-28 h-12 border-4 border-rose-300 rounded-lg p-1 flex items-center shadow-inner group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute -right-2.5 top-1/2 transform -translate-y-1/2 w-1.5 h-4 bg-rose-300 rounded-r-sm"></div>
+                    <div class="bg-gradient-to-r from-pink-400 to-rose-500 h-full rounded-sm w-[80%] animate-pulse flex items-center justify-center shadow-md">
+                        <span class="text-xs drop-shadow-md">❤️</span>
+                    </div>
+                </div>
+                <span class="mt-4 text-rose-500 font-bold text-xs tracking-widest animate-pulse">CARGANDO...</span>
+            </div>
+            <div class="flex flex-col flex-grow">
+                <h2 class="text-xl text-rose-500 font-bold mb-1">Cargando Amor</h2>
+                <p class="text-sm text-gray-600 mb-4">Descubre cuánta energía se necesita para el mensaje de hoy.</p>
+                <span class="text-xs font-bold text-gray-400 uppercase tracking-wider mt-auto">Semana 03</span>
+            </div>
+        </a>
+
+        <a href="semana-02.html" style="--rotation: 3deg;" class="group bg-white p-4 rounded-2xl shadow-xl rotate-[var(--rotation)] transition-all duration-300 ease-out hover:rotate-0 hover:scale-105 hover:-translate-y-2 hover:shadow-2xl flex flex-col">
+            <div class="bg-red-50 border border-red-100 h-48 rounded-xl flex justify-center items-center mb-4 overflow-hidden">
+                <span class="text-7xl animate-[wiggle_2s_ease-in-out_infinite] group-hover:scale-110 transition-transform duration-300">🎟️</span> 
+            </div>
+            <div class="flex flex-col flex-grow">
+                <h2 class="text-xl text-red-500 font-bold mb-1">Raspa y Gana</h2>
+                <p class="text-sm text-gray-600 mb-4">Tienes un boleto ganador esperando por ti.</p>
+                <span class="text-xs font-bold text-gray-400 uppercase tracking-wider mt-auto">Semana 02</span>
+            </div>
+        </a>
+
+        <a href="semana-01.html" style="--rotation: -3deg;" class="group bg-white p-4 rounded-2xl shadow-xl rotate-[var(--rotation)] transition-all duration-300 ease-out hover:rotate-0 hover:scale-105 hover:-translate-y-2 hover:shadow-2xl flex flex-col">
+            <div class="bg-pink-50 border border-pink-100 h-48 rounded-xl flex justify-center items-center mb-4 overflow-hidden">
+                <span class="text-7xl animate-[twinkle_2s_ease-in-out_infinite] group-hover:scale-110 transition-transform duration-300">✨</span> 
+            </div>
+            <div class="flex flex-col flex-grow">
+                <h2 class="text-xl text-pink-500 font-bold mb-1">Lluvia de Amor</h2>
+                <p class="text-sm text-gray-600 mb-4">Toca la pantalla para ver un poco de magia.</p>
+                <span class="text-xs font-bold text-gray-400 uppercase tracking-wider mt-auto">Semana 01</span>
+            </div>
+        </a>
+
+    </main>
+
+</body>
+</html>
