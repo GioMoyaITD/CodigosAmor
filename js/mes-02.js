@@ -1,28 +1,28 @@
 // --- PREGUNTAS DEL QUIZ (¡Edita esto con sus datos reales!) ---
 const quizData = [
     {
-        question: "¿Dónde fue nuestra primera cita oficial?",
-        options: ["En el cine", "En un parque", "En un café", "En la playa"],
+        question: "¿Que hicimos en nuestra primera cita ?",
+        options: ["ir al cine", "Caminar", "Salimos a comer", "ir a la playa"],
         correct: 2 // El índice correcto (0, 1, 2 o 3). En este caso, "En un café".
     },
     {
-        question: "¿Cuál es mi comida favorita en el mundo?",
-        options: ["Sushi", "Pizza", "Hamburguesas", "Pastas"],
-        correct: 0
-    },
-    {
-        question: "¿Qué detalle me enamoró primero de ti?",
-        options: ["Tus ojos", "Tu sonrisa", "Tu forma de ser", "Todo lo anterior"],
-        correct: 3
-    },
-    {
-        question: "¿En qué mes nos dimos el primer beso?",
-        options: ["Enero", "Febrero", "Marzo", "Abril"],
+        question: "¿Donde fue nuestro primer beso?",
+        options: ["En el auto", "En una plaza", "en tu casa", "en el campo"],
         correct: 1
     },
     {
+        question: "¿En que mes nos conocimos?",
+        options: ["Julio", "Agosto", "Septiembre", "Octubre"],
+        correct: 1
+    },
+    {
+        question: "¿Que es lo que mas me gusta de ti?",
+        options: ["Tus ojos", "Tus labios", "Tu pelo", "Tu cintura"],
+        correct: 2
+    },
+    {
         question: "¿Cuánto te amo?",
-        options: ["Mucho", "Muchísimo", "Demasiado", "Más que a nada en el universo"],
+        options: ["Mucho", "Muchísimo", "Muchazo", "Un chingon"],
         correct: 3
     }
 ];
